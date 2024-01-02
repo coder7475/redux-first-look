@@ -41,3 +41,30 @@ const resetCount = () => {
   }
 }
 
+// ? Step 3: create reducer
+const countReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case INCREMENT:
+      return {
+        ...state,
+        count: state.count + 1,
+      }     
+      break;
+    case DECREMENT:
+      return {
+        ...state,
+        count: state.count - 1,
+      }     
+      break;
+    case RESET:
+      return {
+        ...state,
+        count: 0,
+      }     
+      break;
+    default:
+      return state;
+      break;
+  }
+}
+
