@@ -80,3 +80,6 @@ store.subscribe(() => {
 
 // ? Step 6: Dispatch to see output
 store.dispatch(incrementCount());
+store.dispatch(incrementCount());
+store.dispatch(resetCount());
+store.dispatch(decrementCount());
