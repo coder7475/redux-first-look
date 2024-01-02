@@ -11,6 +11,8 @@
  * * 6. Dispatch actions from store
  * ? See the output
  */
+// imports
+const { createStore } = require('redux');
 
 // declare constants
 const INCREMENT = "INCREMENT";
@@ -19,7 +21,7 @@ const RESET = "RESET";
 
 // ? Step 1: Declate Initial State
 const initialState = {
-  count: 0;
+  count: 0
 }
 
 // ? Steps 2: Create the redux actions
@@ -63,8 +65,18 @@ const countReducer = (state = initialState, action) => {
       }     
       break;
     default:
-      return state;
+      state;
       break;
   }
 }
 
+// ? Step 4: Create store
+const store = createStore(countReducer);
+
+// ? Step 5: Subscribe
+store.subscribe(() => {
+  console.log(store.getState());
+})
+
+// ? Step 6: Dispatch to see output
+store.dispatch(incrementCount);
