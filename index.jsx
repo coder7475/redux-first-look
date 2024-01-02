@@ -21,7 +21,7 @@ const RESET = "RESET";
 
 // ? Step 1: Declate Initial State
 const initialState = {
-  count: 0
+  count: 0,
 }
 
 // ? Steps 2: Create the redux actions
@@ -39,7 +39,7 @@ const decrementCount = () => {
 
 const resetCount = () => {
   return {
-    type: RESER
+    type: RESET
   }
 }
 
@@ -79,4 +79,4 @@ store.subscribe(() => {
 })
 
 // ? Step 6: Dispatch to see output
-store.dispatch(incrementCount);
+store.dispatch(incrementCount());
