@@ -12,3 +12,32 @@
  * ? See the output
  */
 
+// declare constants
+const INCREMENT = "INCREMENT";
+const DECREMENT = "DECREMENT";
+const RESET = "RESET";
+
+// ? Step 1: Declate Initial State
+const initialState = {
+  count: 0;
+}
+
+// ? Steps 2: Create the redux actions
+const incrementCount = () => {
+  return {
+    type: INCREMENT
+  }
+}
+
+const decrementCount = () => {
+  return {
+    type: DECREMENT
+  }
+}
+
+const resetCount = () => {
+  return {
+    type: RESER
+  }
+}
+
