@@ -1,5 +1,6 @@
 // See payload in action 
-/**
+/** 
+ * ? Products App
  * TODO: Manage products count and name states globally using redux
  * * 1. Declare Initial States
  * * 2. Create redux actions
@@ -8,6 +9,8 @@
  * * 5. Subscribe to console
  * * 6. Dispatch Actions with payload
  */
+// Import Redux 
+const { createStore } = require("redux");
 
 // ? Constants
 const GET_PRODUCTS = "GET_PRODUCTS";
@@ -69,3 +72,13 @@ const productsReducer = (state = initialProducts, action) => {
   }
 }
 
+// ? Create Store
+const store = createStore(productsReducer);
+
+store.subscribe(() => {
+  console.log(store.getState());
+})
+
+store.dispatch(getProducts());
+store.dispatch(addProduct("kinler"));
+store.dispatch(removeProduct("kinler"));
