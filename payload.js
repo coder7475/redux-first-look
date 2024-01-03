@@ -41,3 +41,31 @@ const removeProduct = (product) => {
   }
 }
 
+// ? Redux Reducer
+const productsReducer = (state = initialProducts, action) => {
+  switch (action.type) {
+    case GET_PRODUCTS:
+      return {
+        ...state,
+      };
+      break;
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        products: [...state.products, action.payload],
+        numOfProducts: state.numOfProducts + 1,
+      }
+      break;
+    case REMOVE_PRODUCT:
+      return {
+        ...state,
+        products: state.products.filter(product => product !== action.payload),
+        numOfProducts: state.numOfProducts - 1,
+      }
+      break;
+    default:
+      return state;
+      break;
+  }
+}
+
