@@ -81,6 +81,7 @@ const removeCartItem = (product) => {
 }
 
 // ? Redux Reducer
+// productsReducer
 const productsReducer = (state = initialProducts, action) => {
   switch (action.type) {
     case GET_PRODUCTS:
@@ -100,6 +101,34 @@ const productsReducer = (state = initialProducts, action) => {
         ...state,
         products: state.products.filter(product => product !== action.payload),
         numOfProducts: state.numOfProducts - 1,
+      }
+      break;
+    default:
+      return state;
+      break;
+  }
+}
+
+// Cart Reducer
+const cartReducer = (state = initialCartItems, action) => {
+  switch (action.type) {
+    case GET_CART_ITEMS:
+      return {
+        ...state,
+      };
+      break;
+    case ADD_CART_ITEM:
+      return {
+        ...state,
+        cart: [...state.cart, action.payload],
+        numOfCartItems: state.numOfCartItems + 1,
+      }
+      break;
+    case REMOVE_CART_ITEM:
+      return {
+        ...state,
+        cart: state.cart.filter(product => product !== action.payload),
+        numOfCartItems: state.numOfCartItems - 1,
       }
       break;
     default:
