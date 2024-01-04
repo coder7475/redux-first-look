@@ -13,9 +13,16 @@
 const { createStore } = require("redux");
 
 // ? Constants
+// For Product Actions type
 const GET_PRODUCTS = "GET_PRODUCTS";
 const ADD_PRODUCT = "ADD_PRODUCT";
 const REMOVE_PRODUCT = "REMOVE_PRODUCT";
+
+// CART ACTION type
+const GET_CART_ITEMS = "GET_CART_ITEMS";
+const ADD_CART_ITEM = "ADD_CART_ITEM";
+const REMOVE_CART_ITEM = "REMOVE_CART_ITEM";
+
 
 // ? Initial States
 // For Products
@@ -31,6 +38,7 @@ const initialCartItems = {
 }
 
 // ? Redux Actions
+// Product Actions
 const getProducts = () => {
   return {
     type: GET_PRODUCTS,
@@ -47,6 +55,27 @@ const addProduct = (product) => {
 const removeProduct = (product) => {
   return {
     type: REMOVE_PRODUCT,
+    payload: product,
+  }
+}
+
+// Cart Actions
+const getCartItems = () => {
+  return {
+    type: GET_CART_ITEMS,
+  }
+}
+
+const addCartItem = (product) => {
+  return {
+    type: ADD_CART_ITEM,
+    payload: product,
+  }
+}
+
+const removeCartItem = (product) => {
+  return {
+    type: REMOVE_CART_ITEM,
     payload: product,
   }
 }
