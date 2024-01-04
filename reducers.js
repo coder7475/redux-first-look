@@ -10,7 +10,7 @@
  * * 6. Dispatch Actions with payloads to test
  */
 // Import Redux 
-const { createStore } = require("redux");
+const { createStore, combineReducers } = require("redux");
 
 // ? Constants
 // For Product Actions type
@@ -34,7 +34,7 @@ const initialProducts = {
 // For Cart Products
 const initialCartItems = {
   cart: ["rice"],
-  numOfCartItems: 2,
+  numOfCartItems: 1,
 }
 
 // ? Redux Actions
@@ -137,8 +137,14 @@ const cartReducer = (state = initialCartItems, action) => {
   }
 }
 
+// ? combine multiple reducer
+const rootReducer = combineReducers({
+  productR: productsReducer,
+  cartR: cartReducer,
+})
+
 // ? Create Store
-const store = createStore(productsReducer);
+const store = createStore(rootReducer);
 
 store.subscribe(() => {
   console.log(store.getState());
@@ -146,4 +152,5 @@ store.subscribe(() => {
 
 store.dispatch(getProducts());
 store.dispatch(addProduct("kinler"));
+store.dispatch(addCartItem("kinler"));
 store.dispatch(removeProduct("kinler"));
