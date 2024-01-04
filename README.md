@@ -7,3 +7,4 @@ Learn redux, react-redux, redux-toolkit
 
 * index.js = simple counter using redux
 * payload.js = manage products using payload
+* reducers = combine multiple reducers
