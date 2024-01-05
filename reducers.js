@@ -1,7 +1,10 @@
 // See payload in action 
 /** 
  * ? Products and Cart App
- * TODO: Multiple reducers Combination
+ * ? DONE: Multiple reducers Combination
+ * TODO: add middleware to store for extra features
+ * ? middleware here = middlepoint of dispatching an action and state handled by reducer
+ * ? features such as performing async tasks, login etc
  * * 1. Declare Initial States for products and carts
  * * 2. Create redux actions for products and carts
  * * 3. Create reducer for products and carts and combine them
@@ -10,7 +13,8 @@
  * * 6. Dispatch Actions with payloads to test
  */
 // Import Redux 
-const { createStore, combineReducers } = require("redux");
+const { createStore, combineReducers, applyMiddleware } = require("redux");
+const { logger } = require("redux-logger");
 
 // ? Constants
 // For Product Actions type
@@ -144,7 +148,7 @@ const rootReducer = combineReducers({
 })
 
 // ? Create Store
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 store.subscribe(() => {
   console.log(store.getState());
