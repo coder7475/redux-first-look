@@ -9,7 +9,15 @@
  * * 3. Write the reducers
  * * 4. Create the store
  * * 5. Create the middlewares 
- * * 6. Dispatch the actions
- * * 7. Test the app
+ * * 6. Apply the middleware
+ * * 7. Dispatch the actions
+ * * 8. Test the app
  */
+
+//? Initial state
+const initialTodos = {
+  data: [],
+  isLoading: false,
+  currentError: null
+}
 
