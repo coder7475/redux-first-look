@@ -17,12 +17,14 @@
 const axios = require('axios').default;
 const { createStore, applyMiddleware } = require('redux');
 const { logger } = require("redux-logger");
+const { thunk } = require('redux-thunk');
 
 // Constants
 const GET_TODOS_REQUEST = "GET_TODOS_REQUEST";
 const GET_TODOS_SUCCESS = "GET_TODOS_SUCCESS";
 const GET_TODOS_FAILURE = "GET_TODOS_FAILURE";
 const TODOS_URL = "https://jsonplaceholder.typicode.com/todos";
+const middlewares = [logger, thunk];
 
 //? Initial state
 const initialTodos = {
@@ -97,7 +99,7 @@ function fetchTodosData() {
 }
 
 //? Create store and subscribe it to the console
-const store = createStore(todosReducer, applyMiddleware(logger));
+const store = createStore(todosReducer, applyMiddleware(...middlewares));
 
 store.subscribe(() => {
   console.log(store.getState());
