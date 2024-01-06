@@ -8,12 +8,13 @@
  * * 2. Define the actions
  * * 3. Write the reducers
  * * 4. Create the store and subscribe
- * * 5. Create the middlewares 
- * * 6. Apply the middleware
+ * * 5. Create the function to fetch data - async action creator
+ * * 6. Apply the middleware - logger, redux-thunk
  * * 7. Dispatch the actions
  * * 8. Test the app
  */
 // dependencies
+const axios = require('axios').default;
 const { createStore, applyMiddleware } = require('redux');
 const { logger } = require("redux-logger");
 
@@ -21,6 +22,7 @@ const { logger } = require("redux-logger");
 const GET_TODOS_REQUEST = "GET_TODOS_REQUEST";
 const GET_TODOS_SUCCESS = "GET_TODOS_SUCCESS";
 const GET_TODOS_FAILURE = "GET_TODOS_FAILURE";
+const TODOS_URL = "https://jsonplaceholder.typicode.com/todos";
 
 //? Initial state
 const initialTodos = {
@@ -77,6 +79,23 @@ const todosReducer = (state = initialTodos, action) => {
   }
 }
 
+//? create a async action creator 
+//? redux thunk allows writing a function with logic inside
+//? that allows us to interact with redux dispatch and get methods
+//TODO: Create a function to dispatch actions on asynchronous request state
+function fetchTodosData() {
+  return (dispatch) => {
+    dispatch(getTodosRequest());
+   axios.get(TODOS_URL) 
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log(res.data);
+    })
+  }
+}
+
 //? Create store and subscribe it to the console
 const store = createStore(todosReducer, applyMiddleware(logger));
 
@@ -84,9 +103,7 @@ store.subscribe(() => {
   console.log(store.getState());
 })
 
-store.dispatch(getTodosRequest());
-
-
+store.dispatch(fetchTodosData());
 
 
 
