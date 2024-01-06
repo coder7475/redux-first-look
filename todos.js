@@ -23,7 +23,7 @@ const { thunk } = require('redux-thunk');
 const GET_TODOS_REQUEST = "GET_TODOS_REQUEST";
 const GET_TODOS_SUCCESS = "GET_TODOS_SUCCESS";
 const GET_TODOS_FAILURE = "GET_TODOS_FAILURE";
-const TODOS_URL = "https://jsonplaceholder.typicode.com/todos";
+const TODOS_URL = "https://jsonplaceholder.typicode.com/tod";
 const middlewares = [logger, thunk];
 
 //? Initial state
@@ -72,7 +72,7 @@ const todosReducer = (state = initialTodos, action) => {
     case GET_TODOS_FAILURE:
       return {
         ...state,
-        data: action.payload,
+        currentError: action.payload,
         isLoading: false
       }
     default:
@@ -90,10 +90,11 @@ function fetchTodosData() {
     dispatch(getTodosRequest());
    axios.get(TODOS_URL) 
     .then(res => {
-      console.log(res.data);
+      dispatch(getTodosSuccess(res.data.slice(0, 2)));
     })
     .catch(err => {
-      console.log(res.data);
+      // console.log(err.message, err.code);
+      dispatch(getTododsFailure(err.code + ": " + err.message))
     })
   }
 }
