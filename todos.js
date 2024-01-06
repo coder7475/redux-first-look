@@ -23,7 +23,7 @@ const { thunk } = require('redux-thunk');
 const GET_TODOS_REQUEST = "GET_TODOS_REQUEST";
 const GET_TODOS_SUCCESS = "GET_TODOS_SUCCESS";
 const GET_TODOS_FAILURE = "GET_TODOS_FAILURE";
-const TODOS_URL = "https://jsonplaceholder.typicode.com/tod";
+const TODOS_URL = "https://jsonplaceholder.typicode.com/todos";
 const middlewares = [logger, thunk];
 
 //? Initial state
@@ -90,7 +90,8 @@ function fetchTodosData() {
     dispatch(getTodosRequest());
    axios.get(TODOS_URL) 
     .then(res => {
-      dispatch(getTodosSuccess(res.data.slice(0, 2)));
+      const curatedData = res.data.slice(0, 5).map(todo => todo.id + " " + todo.title)
+      dispatch(getTodosSuccess(curatedData));
     })
     .catch(err => {
       // console.log(err.message, err.code);
