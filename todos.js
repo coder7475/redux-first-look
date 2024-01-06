@@ -14,7 +14,8 @@
  * * 8. Test the app
  */
 // dependencies
-const { createStore } = require('redux');
+const { createStore, applyMiddleware } = require('redux');
+const { logger } = require("redux-logger");
 
 // Constants
 const GET_TODOS_REQUEST = "GET_TODOS_REQUEST";
@@ -77,7 +78,7 @@ const todosReducer = (state = initialTodos, action) => {
 }
 
 //? Create store and subscribe it to the console
-const store = createStore(todosReducer);
+const store = createStore(todosReducer, applyMiddleware(logger));
 
 store.subscribe(() => {
   console.log(store.getState());
