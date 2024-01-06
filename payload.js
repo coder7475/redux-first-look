@@ -1,7 +1,7 @@
 // See payload in action 
 /** 
  * ? Products App
- * TODO: Manage products count and name states globally using redux
+ * ? DONE: Manage products count and name states globally using redux
  * * 1. Declare Initial States
  * * 2. Create redux actions
  * * 3. Create reducer

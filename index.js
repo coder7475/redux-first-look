@@ -2,7 +2,7 @@
 // only for learning purpose
 
 /**
- * TODO: Create redux app state management for a simple counter app
+ * ?DONE: Create redux app state management for a simple counter app
  * * 1. Initial State Declaration
  * * 2. Create pure functions for redux actions
  * * 3. Create reducer function to handle logic
