@@ -65,8 +65,11 @@ const todosReducer = (state = initialTodos, action) => {
     case GET_TODOS_FAILURE:
       return {
         ...state,
+        data: action.payload,
+        isLoading: false
       }
     default:
+      return state
       break;
   }
 }
