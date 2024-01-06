@@ -13,6 +13,8 @@
  * * 7. Dispatch the actions
  * * 8. Test the app
  */
+// dependencies
+const { createStore } = require('redux');
 
 // Constants
 const GET_TODOS_REQUEST = "GET_TODOS_REQUEST";
@@ -74,11 +76,14 @@ const todosReducer = (state = initialTodos, action) => {
   }
 }
 
+//? Create store and subscribe it to the console
+const store = createStore(todosReducer);
 
+store.subscribe(() => {
+  console.log(store.getState());
+})
 
-
-
-
+store.dispatch(getTodosRequest());
 
 
 
