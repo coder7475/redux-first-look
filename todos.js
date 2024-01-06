@@ -33,19 +33,43 @@ const getTodosRequest = () => {
   }
 }
 
-const getTodosSuccess = () => {
+const getTodosSuccess = (todos) => {
   return {
-    type: GET_TODOS_SUCCESS
+    type: GET_TODOS_SUCCESS,
+    payload: todos,
   }
 }
 
-const getTododsFailure = () => {
+const getTododsFailure = (error) => {
   return {
-    type: GET_TODOS_FAILURE
+    type: GET_TODOS_FAILURE,
+    payload: error
   }
 }
 
-
+//? Reducer
+const todosReducer = (state = initialTodos, action) => {
+  switch (action.type) {
+    case GET_TODOS_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      }
+      break;
+    case GET_TODOS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        data: action.payload
+      }
+    case GET_TODOS_FAILURE:
+      return {
+        ...state,
+      }
+    default:
+      break;
+  }
+}
 
 
 
